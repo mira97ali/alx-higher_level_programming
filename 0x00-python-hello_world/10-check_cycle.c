@@ -3,26 +3,26 @@
 /**
  * check_cycle - checks if a singly linked list has a cycle
  * @list: pointer to the head
- * Return: 0 if there is no cycle, 1 if there is a cycle
+ * Return: 0 if there is no cycle, 1 if there is one
  */
 
 int check_cycle(listint_t *list)
 {
-	listint_t *slow, *fast;
+	listint_t *previous, *current;
 
 	if (list == NULL || list->next == NULL)
 		return (0);
 
-	slow = list;
-	fast = list->next;
+	previous = list;
+	current = list->next;
 
-	while (fast != NULL && fast->next != NULL)
+	while (current != NULL && current->next != NULL)
 	{
-		if (slow == fast)
+		if (previous == current)
 			return (1);
 
-		slow = slow->next;
-		fast = fast->next->next;
+		previous = previous->next;
+		current = current->next->next;
 	}
 
 	return (0);
