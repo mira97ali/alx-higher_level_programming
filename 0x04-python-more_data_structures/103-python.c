@@ -59,7 +59,7 @@ void print_python_list(PyObject *p)
 
 	for (Py_ssize_t i = 0; i < size; ++i)
 	{
-		PyObject *elem = p->ob_type->tp_itemsize;
+		PyObject *elem = ((PyObject **)(void *)p->ob_item)[i];
 
 		printf("Element %ld: ", i);
 
