@@ -9,17 +9,16 @@ ROMAN_NUMERALS = {
     "M": 1000
 }
 
+
 def roman_to_int(roman_string):
     result = 0
-    prev_value = 0
-    for char in reversed(roman_string):
-        value = ROMAN_NUMERALS[char]
-
-        if value < prev_value:
-            result -= value
-        else:
-            result += value
-
-        prev_value = value
-
+    if isinstance(roman_string, str):
+        prev_value = 0
+        for char in reversed(roman_string):
+            value = ROMAN_NUMERALS[char]
+            if value < prev_value:
+                result -= value
+            else:
+                result += value
+            prev_value = value
     return result
