@@ -7,6 +7,3 @@ def safe_print_integer_err(value):
     except Exception as exc:
         print("Exception: {}".format(exc))
         return False
-
-
-safe_print_integer_err("abc")
