@@ -8,6 +8,5 @@ def safe_print_list(my_list=[], x=0):
             number = number + 1
         except IndexError:
             break
-    if my_list != []:
-        print("\n", end="")
+    print("\n", end="")
     return number
