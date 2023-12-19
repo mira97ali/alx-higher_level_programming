@@ -51,14 +51,12 @@ class Square:
         if self.__size == 0:
             print("")
         else:
-            result = "#" * self.__size
-            delimeter = " " * self.__position[0]
-            cutter = self.__position[1]
-            if cutter > 0:
-                cutter = cutter - 1
-            result = result[:cutter] + delimeter + result[cutter:]
-            for i in range(self.__size):
-                print(result)
+            prefix = " " * self.__position[0]
+            line = prefix + "#" * self.__size
+            for i in range(self.__position[1]):
+                print("")
+            for j in range(self.__size):
+                print(line)
 
     @property
     def position(self):
