@@ -11,6 +11,7 @@ class Square:
     Methods:
         area: Returning the current square area.
         size: Set and get the square's size.
+        my_print: Prints the square using #.
     """
 
     def __init__(self, size=0):
