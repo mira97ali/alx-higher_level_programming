@@ -7,11 +7,13 @@ class Square:
 
     Attributes:
         size: Size of a given square.
+        position: Position given.
 
     Methods:
         area: Returning the current square area.
         size: Set and get the square's size.
         my_print: Prints the square using #.
+        position: Set/Get the position.
     """
 
     def __init__(self, size=0, position=(0, 0)):
