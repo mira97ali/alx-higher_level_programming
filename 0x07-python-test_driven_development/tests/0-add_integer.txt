@@ -1,0 +1,39 @@
+# ./tests/0-add_integer.txt
+
+>>> add_integer = __import__("0-add_integer").add_integer
+
+# test a in not int nor float
+>>> add_integer(None, 3)
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer
+
+# test b in not int nor float
+>>> add_integer(3, [])
+Traceback (most recent call last):
+    ...
+TypeError: b must be an integer
+
+# test both are integers
+>>> add_integer(2, 3)
+5
+
+# test both are float
+>>> add_integer(3.14, 2.71)
+5
+
+# test negative values
+>>> add_integer(-1, -5)
+-6
+
+# test null values
+>>> add_integer(0, 0)
+0
+
+# test mixed int and float
+>>> add_integer(30, -21.2)
+9
+
+# test default values
+>>> add_integer(2)
+100
