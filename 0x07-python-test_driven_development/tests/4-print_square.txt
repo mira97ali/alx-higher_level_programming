@@ -1,0 +1,27 @@
+# ./tests/4-print_square.txt
+
+>>> print_square = __import__("4-print_square").print_square
+
+# Valid input
+>>> print_square(3)
+###
+###
+###
+
+# Invalid input - size is not an integer
+>>> print_square("two")
+Traceback (most recent call last):
+    ...
+TypeError: size must be an integer
+
+# Invalid input - size is less than 0
+>>> print_square(-2)
+Traceback (most recent call last):
+    ...
+ValueError: size must be >= 0
+
+# Invalid input - size is a float and less than 0
+>>> print_square(2.5)
+Traceback (most recent call last):
+    ...
+TypeError: size must be an integer
