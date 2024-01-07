@@ -1,0 +1,28 @@
+# ./tests/3-say_my_name.txt
+
+>>> say_my_name = __import__("3-say_my_name").say_my_name
+
+
+# Unvalid first name
+>>> say_my_name(1, "White")
+Traceback (most recent call last):
+    ...
+ValueError: first_name must be a string
+
+# Unvalid last name
+>>> say_my_name("Walter", [])
+Traceback (most recent call last):
+    ...
+ValueError: last_name must be a string
+
+# valid names
+>>> say_my_name("Walter", "White")
+'My name is Walter White'
+
+# valid names empty first name
+>>> say_my_name(" ", "White")
+'My name is White'
+
+# valid names empty last name
+>>> say_my_name("Walter", "     ")
+'My name is Walter'
