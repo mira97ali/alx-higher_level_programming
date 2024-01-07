@@ -1,0 +1,43 @@
+# ./tests/5-text_indentation.txt
+
+>>> text_indentation = __import__("5-text_indentation").text_indentation
+
+
+# Valid input with '.' and '?'
+>>> text_indentation("Hello. How are you? I'm fine, thank you.")
+Hello.
+<BLANKLINE>
+How are you?
+<BLANKLINE>
+I'm fine, thank you.
+<BLANKLINE>
+
+# Valid input with ':'
+>>> text_indentation("This is a test: one, two, three.")
+This is a test:
+<BLANKLINE>
+one, two, three.
+<BLANKLINE>
+
+# Valid input with multiple new lines
+>>> text_indentation("Sentence 1. Sentence 2. Sentence 3? Sentence 4: The end.")
+Sentence 1.
+<BLANKLINE>
+Sentence 2.
+<BLANKLINE>
+Sentence 3?
+<BLANKLINE>
+Sentence 4:
+<BLANKLINE>
+The end.
+<BLANKLINE>
+
+# Valid input with no punctuation
+>>> text_indentation("No punctuation in this text")
+No punctuation in this text
+
+# Invalid input - text is not a string
+>>> text_indentation(123)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
