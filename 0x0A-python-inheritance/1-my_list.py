@@ -8,3 +8,7 @@ class MyList(list):
         """print sorted list"""
         sorted_list = sorted(self)
         print(sorted_list)
+        return sorted_list
+
+    def __str__(self):
+        return super().__str__()
