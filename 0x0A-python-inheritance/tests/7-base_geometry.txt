@@ -1,0 +1,33 @@
+# ./tests/7-base_geometry.txt
+
+>>> BaseGeometry = __import__("7-base_geometry").BaseGeometry
+
+
+# Invalid area method (not subclassed)
+>>> geometry = BaseGeometry()
+>>> geometry.area()
+Traceback (most recent call last):
+    ...
+Exception: area() is not implemented
+
+# Valid integer_validator method with positive integer
+>>> geometry = BaseGeometry()
+>>> geometry.integer_validator("test", 42)
+
+# Valid integer_validator method with zero
+>>> geometry.integer_validator("test", 0)
+Traceback (most recent call last):
+    ...
+ValueError: test must be greater than 0
+
+# Invalid integer_validator method with non-integer value
+>>> geometry.integer_validator("test", "string")
+Traceback (most recent call last):
+    ...
+TypeError: test must be an integer
+
+# Invalid integer_validator method with negative value
+>>> geometry.integer_validator("test", -42)
+Traceback (most recent call last):
+    ...
+ValueError: test must be greater than 0
