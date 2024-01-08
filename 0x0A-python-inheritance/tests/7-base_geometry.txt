@@ -31,3 +31,52 @@ TypeError: test must be an integer
 Traceback (most recent call last):
     ...
 ValueError: test must be greater than 0
+
+# Invalid integer_validator method with missing value
+>>> geometry = BaseGeometry()
+>>> geometry.integer_validator("test")
+Traceback (most recent call last):
+    ...
+TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
+
+# Invalid integer_validator method with tuple containing an integer
+>>> geometry = BaseGeometry()
+>>> geometry.integer_validator("test", (100,))
+Traceback (most recent call last):
+    ...
+TypeError: test must be an integer
+
+# Invalid integer_validator method with list containing an integer
+>>> geometry = BaseGeometry()
+>>> geometry.integer_validator("test", [1])
+Traceback (most recent call last):
+    ...
+TypeError: test must be an integer
+
+# Invalid integer_validator method with dictionary
+>>> geometry = BaseGeometry()
+>>> geometry.integer_validator("test", {"key": 42})
+Traceback (most recent call last):
+    ...
+TypeError: test must be an integer
+
+# Invalid integer_validator method with None
+>>> geometry = BaseGeometry()
+>>> geometry.integer_validator("test", None)
+Traceback (most recent call last):
+    ...
+TypeError: test must be an integer
+
+# Invalid integer_validator method with boolean value (True)
+>>> geometry = BaseGeometry()
+>>> geometry.integer_validator("test", True)
+Traceback (most recent call last):
+    ...
+TypeError: test must be an integer
+
+# Invalid integer_validator method with boolean value (False)
+>>> geometry = BaseGeometry()
+>>> geometry.integer_validator("test", False)
+Traceback (most recent call last):
+    ...
+TypeError: test must be an integer
