@@ -2,6 +2,7 @@
 """Log parsing"""
 import sys
 
+
 def print_stats(size, status_codes):
     """Print accumulated metrics"""
     print("File size: {}".format(size))
