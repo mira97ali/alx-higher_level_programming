@@ -2,7 +2,7 @@
 """Pascal's Triangle"""
 
 
-def pascal_triangle(n): 
+def pascal_triangle(n):
     """Pascal ▲"""
     if n <= 0:
         return []
