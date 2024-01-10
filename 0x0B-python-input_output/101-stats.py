@@ -1,35 +1,53 @@
 #!/usr/bin/python3
 """Log parsing"""
-import sys
 
 
-def print_metrics(total_size, status_codes):
-    """Print metrics based on current statistics"""
-    print("File size: {}".format(total_size))
-    for code in sorted(status_codes):
-        print("{}: {}".format(code, status_codes[code]))
+def print_stats(size, status_codes):
+    """Print accumulated metrics.
+
+    Args:
+        size (int): The accumulated read file size.
+        status_codes (dict): The accumulated count of status codes.
+    """
+    print("File size: {}".format(size))
+    for key in sorted(status_codes):
+        print("{}: {}".format(key, status_codes[key]))
 
 
 if __name__ == "__main__":
-    total_size = 0
+    import sys
+
+    size = 0
     status_codes = {}
+    valid_codes = ['200', '301', '400', '401', '403', '404', '405', '500']
+    count = 0
 
     try:
-        for idx, line in enumerate(sys.stdin, 1):
-            parts = line.split()
-            if len(parts) > 7:
-                total_size += int(parts[-1])
-                status_code = int(parts[-2])
+        for line in sys.stdin:
+            if count == 10:
+                print_stats(size, status_codes)
+                count = 1
+            else:
+                count += 1
 
-                if status_code in status_codes:
-                    status_codes[status_code] += 1
-                else:
-                    status_codes[status_code] = 1
+            line = line.split()
 
-            if idx % 10 == 0:
-                print_metrics(total_size, status_codes)
+            try:
+                size += int(line[-1])
+            except (IndexError, ValueError):
+                pass
+
+            try:
+                if line[-2] in valid_codes:
+                    if status_codes.get(line[-2], -1) == -1:
+                        status_codes[line[-2]] = 1
+                    else:
+                        status_codes[line[-2]] += 1
+            except IndexError:
+                pass
+
+        print_stats(size, status_codes)
 
     except KeyboardInterrupt:
-        # Handle KeyboardInterrupt (CTRL + C)
-        print_metrics(total_size, status_codes)
-        sys.exit(0)
+        print_stats(size, status_codes)
+        raise
