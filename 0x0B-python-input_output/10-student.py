@@ -15,5 +15,6 @@ class Student:
             return self.__dict__
         result = {}
         for key, value in self.__dict__.items():
-            result[key] = value
+            if key in attrs:
+                result[key] = value
         return result
