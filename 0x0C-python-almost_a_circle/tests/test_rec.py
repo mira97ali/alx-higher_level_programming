@@ -200,6 +200,7 @@ class TestRectangle(unittest.TestCase):
 
     @mock.patch('builtins.open', new_callable=mock.mock_open)
     def test_save_to_file_rectangle(self, mock_open_file):
+        """Test save_to_file with a list of Rectangle instances"""
         case1 = Rectangle(1, 2, 3, 4, 5)
         case2 = Rectangle(6, 7, 8, 9, 10)
         Rectangle.save_to_file([case1, case2])

@@ -104,7 +104,7 @@ class TestRectangle(unittest.TestCase):
 
     @mock.patch('builtins.open', new_callable=mock.mock_open)
     def test_save_to_file_square(self, mock_open_file):
-        # Test save_to_file with a list of Square instances
+        """Test save_to_file with a list of Square instances"""
         case1 = Square(5, 2, 3, 1)
         case2 = Square(8, 4, 6, 2)
         Square.save_to_file([case1, case2])
