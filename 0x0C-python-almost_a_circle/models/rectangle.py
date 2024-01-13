@@ -83,3 +83,7 @@ class Rectangle(Base):
         self.validate_is_integer(new_y, "y")
         self.validate_zero_or_bigger(new_y, "y")
         self.__y = new_y
+
+    def area(self):
+        """Calculate the area"""
+        return self.__width * self.__height
