@@ -141,6 +141,28 @@ class TestRectangle(unittest.TestCase):
         # Reset stdout
         sys.stdout = self.original_stdout
 
+    def test_update(self):
+        """test the public `update` method"""
+        case1 = Rectangle(10, 10, 10, 10)
+        case1.update(89)
+        self.assertEqual(case1.id, 89)
+        # Test width
+        self.assertEqual(case1.width, 10)
+        case1.update(89, 2)
+        self.assertEqual(case1.width, 2)
+        # Test height
+        self.assertEqual(case1.height, 10)
+        case1.update(89, 2, 3)
+        self.assertEqual(case1.height, 3)
+        # Test x
+        self.assertEqual(case1.x, 10)
+        case1.update(89, 2, 3, 4)
+        self.assertEqual(case1.x, 4)
+        # Test y
+        self.assertEqual(case1.y, 10)
+        case1.update(89, 2, 3, 4, 5)
+        self.assertEqual(case1.y, 5)
+
 
 if __name__ == '__main__':
     unittest.main()
