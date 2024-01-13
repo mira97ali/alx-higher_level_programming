@@ -78,6 +78,15 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(result, "[Square] (12) 2/1 - 6/6\n")
         # Reset stdout
         sys.stdout = self.original_stdout
+    
+    def test_square_update(self):
+        """Test square"""
+        square = Square(1, 1, 1, 1)
+        square.update(2, 3, 4, 5)
+        self.assertEqual(square.id, 2)
+        self.assertEqual(square.size, 3)
+        self.assertEqual(square.x, 4)
+        self.assertEqual(square.y, 5)
 
 
 if __name__ == '__main__':
