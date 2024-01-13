@@ -52,6 +52,14 @@ class TestBaseClass(unittest.TestCase):
         ]
         self.assertEqual(result, expected_result)
 
+    @mock.patch('builtins.open', new_callable=mock.mock_open)
+    def test_load_from_file_nonexistent_file(self, mock_open_file):
+        """Test load_from_file for non-existent file"""
+        mock_open_file.side_effect = FileNotFoundError
+        result = Base.load_from_file()
+        mock_open_file.assert_called_once_with('Base.json', 'r')
+        self.assertEqual(result, [])
+
 
 if __name__ == "__main__":
     unittest.main()

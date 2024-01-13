@@ -7,6 +7,10 @@ import io
 from models.rectangle import Rectangle
 
 
+MOCK_FILE = ('[{"id": 1, "width": 5, "height": 10, "x": 2, "y": 3}, '
+             '{"id": 2, "width": 8, "height": 8, "x": 4, "y": 6}]')
+
+
 class TestRectangle(unittest.TestCase):
     """Test Rectangle"""
 
@@ -220,6 +224,29 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(result.height, 10)
         self.assertEqual(result.x, 2)
         self.assertEqual(result.y, 3)
+
+    @mock.patch(
+        'builtins.open',
+        new_callable=mock.mock_open,
+        read_data=MOCK_FILE
+    )
+    def test_load_from_file_rectangle(self, mock_open_file):
+        """Test load_from_file for Rectangle"""
+        result = Rectangle.load_from_file()
+        mock_open_file.assert_called_once_with('Rectangle.json', 'r')
+        self.assertEqual(len(result), 2)
+        self.assertIsInstance(result[0], Rectangle)
+        self.assertEqual(result[0].id, 1)
+        self.assertEqual(result[0].width, 5)
+        self.assertEqual(result[0].height, 10)
+        self.assertEqual(result[0].x, 2)
+        self.assertEqual(result[0].y, 3)
+        self.assertIsInstance(result[1], Rectangle)
+        self.assertEqual(result[1].id, 2)
+        self.assertEqual(result[1].width, 8)
+        self.assertEqual(result[1].height, 8)
+        self.assertEqual(result[1].x, 4)
+        self.assertEqual(result[1].y, 6)
 
 
 if __name__ == '__main__':

@@ -7,6 +7,10 @@ import io
 from models.square import Square
 
 
+MOCK_FILE = ('[{"id": 3, "size": 4, "x": 1, "y": 2}, '
+             '{"id": 4, "size": 7, "x": 3, "y": 5}]')
+
+
 class TestRectangle(unittest.TestCase):
     """Test Rectangle"""
 
@@ -123,6 +127,27 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(result.size, 8)
         self.assertEqual(result.x, 4)
         self.assertEqual(result.y, 6)
+
+    @mock.patch(
+        'builtins.open',
+        new_callable=mock.mock_open,
+        read_data=MOCK_FILE
+    )
+    def test_load_from_file_square(self, mock_open_file):
+        """Test load_from_file for Square"""
+        result = Square.load_from_file()
+        mock_open_file.assert_called_once_with('Square.json', 'r')
+        self.assertEqual(len(result), 2)
+        self.assertIsInstance(result[0], Square)
+        self.assertEqual(result[0].id, 3)
+        self.assertEqual(result[0].size, 4)
+        self.assertEqual(result[0].x, 1)
+        self.assertEqual(result[0].y, 2)
+        self.assertIsInstance(result[1], Square)
+        self.assertEqual(result[1].id, 4)
+        self.assertEqual(result[1].size, 7)
+        self.assertEqual(result[1].x, 3)
+        self.assertEqual(result[1].y, 5)
 
 
 if __name__ == '__main__':

@@ -51,3 +51,16 @@ class Base:
         if not json_string:
             return []
         return json.loads(json_string)
+
+    @classmethod
+    def load_from_file(cls):
+        """Return a list of instances from a file"""
+        filename = f"{cls.__name__}.json"
+        try:
+            with open(filename, 'r') as file:
+                content = file.read()
+                dictionaries = cls.from_json_string(content)
+                instances = [cls.create(**d) for d in dictionaries]
+                return instances
+        except FileNotFoundError:
+            return []
