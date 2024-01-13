@@ -141,8 +141,8 @@ class TestRectangle(unittest.TestCase):
         # Reset stdout
         sys.stdout = self.original_stdout
 
-    def test_update(self):
-        """test the public `update` method"""
+    def test_update_args_only(self):
+        """test the public `update` method, args only"""
         case1 = Rectangle(10, 10, 10, 10)
         case1.update(89)
         self.assertEqual(case1.id, 89)
@@ -162,6 +162,26 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(case1.y, 10)
         case1.update(89, 2, 3, 4, 5)
         self.assertEqual(case1.y, 5)
+
+    def test_update_args_and_kwargs(self):
+        """test the public `update` method, args and kwargs"""
+        case1 = Rectangle(10, 20, 5, 5)
+        case1.update(42, height=30, x=8)
+        self.assertEqual(case1.id, 42)
+        self.assertEqual(case1.width, 10)
+        self.assertEqual(case1.height, 30)
+        self.assertEqual(case1.x, 8)
+        self.assertEqual(case1.y, 5)
+
+    def test_update_kwargs_only(self):
+        """test the public `update` method, args only"""
+        case1 = Rectangle(5, 5, 1, 1)
+        case1.update(id=0, y=3, width=8)
+        self.assertEqual(case1.id, 0)
+        self.assertEqual(case1.width, 8)
+        self.assertEqual(case1.height, 5)
+        self.assertEqual(case1.x, 1)
+        self.assertEqual(case1.y, 3)
 
 
 if __name__ == '__main__':
