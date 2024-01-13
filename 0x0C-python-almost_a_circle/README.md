@@ -7,6 +7,11 @@ Tasks:
 
 - The Base:
     - Base class
+    - Dictionary to JSON string
+    - JSON string to file
+    - JSON string to dictionary
+    - Dictionary to Instance
+    - File to instances
 
 - Create a Rectangle:
     - First Rectangle
@@ -17,15 +22,10 @@ Tasks:
     - Display #1
     - Update #0
     - Update #1
+    - Rectangle instance to dictionary representation
 
 - Create a Square:
     - And now, the Square!
     - Square size
     - Square update
-    - Rectangle instance to dictionary representation
     - Square instance to dictionary representation
-    - Dictionary to JSON string
-    - JSON string to file
-    - JSON string to dictionary
-    - Dictionary to Instance
-    - File to instances
