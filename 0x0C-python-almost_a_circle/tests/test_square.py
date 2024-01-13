@@ -18,6 +18,27 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(rectangle.y, 7)
         self.assertEqual(rectangle.id, 99)
 
+    def test_size_getter(self):
+        """test set size"""
+        rectangle = Square(10)
+        self.assertEqual(rectangle.size, 10)
+
+    def test_size_setter(self):
+        """test set size"""
+        rectangle = Square(20)
+        rectangle.size = 99
+        self.assertEqual(rectangle.size, 99)
+    
+    def test_size_setter_failed(self):
+        """test set size"""
+        rectangle = Square(32)
+        with self.assertRaises(TypeError) as exc:
+            rectangle.size = "size"
+            self.assertEqual(str(exc.exception), "width must be an integer")
+        with self.assertRaises(ValueError) as exc:
+            rectangle.size = 0
+            self.assertEqual(str(exc.exception), "width must be > 0")
+
     def test_calculate_area(self):
         """test calculate area"""
         case1 = Square(3)
