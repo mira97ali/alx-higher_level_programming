@@ -87,6 +87,19 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(square.size, 3)
         self.assertEqual(square.x, 4)
         self.assertEqual(square.y, 5)
+    
+    def test_to_dictionary(self):
+        """test the method to_dictionary"""
+        case1 = Square(3, 1, 4, 9)
+        expected_output = {
+            'id': 9,
+            'size': 3,
+            'x': 1,
+            'y': 4
+        }
+        to_dict = case1.to_dictionary()
+        self.assertEqual(to_dict, expected_output)
+        self.assertIsInstance(to_dict, dict)
 
 
 if __name__ == '__main__':
