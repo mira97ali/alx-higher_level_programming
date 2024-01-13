@@ -21,11 +21,21 @@ class Rectangle(Base):
         self.validate_zero_or_bigger(y, "y")
         self.__y = y
 
+    def __str__(self):
+        return "[{}] ({}) {}/{} - {}/{}".format(
+            self.__class__.__name__,
+            self.id,
+            self.x,
+            self.y,
+            self.__width,
+            self.__height
+        )
+
     def validate_is_integer(self, input, input_name):
         """validate input is integer"""
         if not isinstance(input, int):
             raise TypeError(f"{input_name} must be an integer")
-        
+
     def validate_is_positive(self, input, input_name):
         """validate input is bigger than zero"""
         if not input > 0:

@@ -109,6 +109,18 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(result, expected_output)
         # Reset stdout
         sys.stdout = self.original_stdout
+    
+    def test_with_print_statement(self):
+        """Test the print by implementing __str__"""
+        # Capture and update stdout
+        self.original_stdout = sys.stdout
+        sys.stdout = io.StringIO()
+        case1 = Rectangle(4, 6, 2, 1, 12)
+        print(case1)
+        result = sys.stdout.getvalue()
+        self.assertEqual(result, "[Rectangle] (12) 2/1 - 4/6\n")
+        # Reset stdout
+        sys.stdout = self.original_stdout
 
 if __name__ == '__main__':
     unittest.main()
