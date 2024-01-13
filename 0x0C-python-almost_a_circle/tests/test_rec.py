@@ -210,6 +210,17 @@ class TestRectangle(unittest.TestCase):
             '{"id": 10, "width": 6, "height": 7, "x": 8, "y": 9}]'
         )
 
+    def test_create_rectangle(self):
+        # Test create method for Rectangle
+        dictionary = {'id': 1, 'width': 5, 'height': 10, 'x': 2, 'y': 3}
+        result = Rectangle.create(**dictionary)
+        self.assertIsInstance(result, Rectangle)
+        self.assertEqual(result.id, 1)
+        self.assertEqual(result.width, 5)
+        self.assertEqual(result.height, 10)
+        self.assertEqual(result.x, 2)
+        self.assertEqual(result.y, 3)
+
 
 if __name__ == '__main__':
     unittest.main()

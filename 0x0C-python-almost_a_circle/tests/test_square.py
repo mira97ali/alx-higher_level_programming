@@ -114,6 +114,16 @@ class TestRectangle(unittest.TestCase):
             '{"id": 2, "size": 8, "x": 4, "y": 6}]'
         )
 
+    def test_create_square(self):
+        # Test create method for Square
+        dictionary = {'id': 2, 'size': 8, 'x': 4, 'y': 6}
+        result = Square.create(**dictionary)
+        self.assertIsInstance(result, Square)
+        self.assertEqual(result.id, 2)
+        self.assertEqual(result.size, 8)
+        self.assertEqual(result.x, 4)
+        self.assertEqual(result.y, 6)
+
 
 if __name__ == '__main__':
     unittest.main()

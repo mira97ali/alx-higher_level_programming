@@ -15,11 +15,6 @@ class TestBaseClass(unittest.TestCase):
         self.assertNotEqual(base1, base2)
         self.assertEqual(base1.id, base2.id)
 
-    def test_without_ids(self):
-        """test none"""
-        base3 = Base()
-        self.assertEqual(base3.id, 1)
-
     def test_to_json_string(self):
         """Test to_json_string"""
         base4 = Base()

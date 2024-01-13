@@ -1,4 +1,4 @@
-## 0x0C. Python - Almost a circle
+# 0x0C. Python - Almost a circle
 
 Tasks:
 
@@ -29,3 +29,9 @@ Tasks:
     - Square size
     - Square update
     - Square instance to dictionary representation
+
+
+* Test Command * : `python3 -m unittest tests/*.py``
+
+* Style Check Command * : `pycodestyle *`
+ 

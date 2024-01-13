@@ -14,6 +14,19 @@ class Base:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
 
+    @classmethod
+    def create(cls, **dictionary):
+        """Return an instance with all attributes already set"""
+        if cls.__name__ == "Rectangle":
+            dummy_instance = cls(1, 1)
+        elif cls.__name__ == "Square":
+            dummy_instance = cls(1)
+        else:
+            raise NotImplementedError(
+                f"Implement {cls.__name__} first")
+        dummy_instance.update(**dictionary)
+        return dummy_instance
+
     @staticmethod
     def to_json_string(list_dictionaries):
         """Return the JSON string representation of list_dictionaries"""
