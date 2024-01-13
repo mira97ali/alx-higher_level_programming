@@ -8,10 +8,33 @@ class Rectangle(Base):
     """Rectangle class"""
     def __init__(self, width, height, x=0, y=0, id=None):
         super().__init__(id)
+        self.validate_is_integer(width, "width")
+        self.validate_is_positive(width, "width")
         self.__width = width
+        self.validate_is_integer(height, "height")
+        self.validate_is_positive(height, "height")
         self.__height = height
+        self.validate_is_integer(x, "x")
+        self.validate_zero_or_bigger(x, "x")
         self.__x = x
+        self.validate_is_integer(y, "y")
+        self.validate_zero_or_bigger(y, "y")
         self.__y = y
+
+    def validate_is_integer(self, input, input_name):
+        """validate input is integer"""
+        if not isinstance(input, int):
+            raise TypeError(f"{input_name} must be an integer")
+        
+    def validate_is_positive(self, input, input_name):
+        """validate input is bigger than zero"""
+        if not input > 0:
+            raise ValueError(f"{input_name} must be > 0")
+
+    def validate_zero_or_bigger(self, input, input_name):
+        """validate input is equal to or bigger than zero"""
+        if input < 0:
+            raise ValueError(f"{input_name} must be >= 0")
 
     @property
     def width(self):
@@ -21,6 +44,8 @@ class Rectangle(Base):
     @width.setter
     def width(self, new_width):
         """Width Setter"""
+        self.validate_is_integer(new_width, "width")
+        self.validate_is_positive(new_width, "width")
         self.__width = new_width
 
     @property
@@ -31,6 +56,8 @@ class Rectangle(Base):
     @height.setter
     def height(self, new_height):
         """Height Setter"""
+        self.validate_is_integer(new_height, "height")
+        self.validate_is_positive(new_height, "height")
         self.__height = new_height
 
     @property
@@ -41,6 +68,8 @@ class Rectangle(Base):
     @x.setter
     def x(self, new_x):
         """X Setter"""
+        self.validate_is_integer(new_x, "x")
+        self.validate_zero_or_bigger(new_x, "x")
         self.__x = new_x
 
     @property
@@ -51,4 +80,6 @@ class Rectangle(Base):
     @y.setter
     def y(self, new_y):
         """Y Setter"""
+        self.validate_is_integer(new_y, "y")
+        self.validate_zero_or_bigger(new_y, "y")
         self.__y = new_y
