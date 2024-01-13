@@ -112,7 +112,7 @@ class Rectangle(Base):
     def update(self, *args, **kwargs):
         """assigns an argument to each attribute"""
         allowed_args = ["id", "width", "height", "x", "y"]
-        # If *args is not empty, assign values based on the order of allowed_args
+        # Assign values based on the order of allowed_args
         if args:
             for index, arg in enumerate(args):
                 setattr(self, allowed_args[index], arg)
@@ -120,7 +120,7 @@ class Rectangle(Base):
         for key, value in kwargs.items():
             if key in allowed_args:
                 setattr(self, key, value)
-    
+
     def to_dictionary(self):
         """Return the dictionary representation of a Rectangle"""
         return {

@@ -23,7 +23,7 @@ class Square(Rectangle):
     def update(self, *args, **kwargs):
         """assigns attributes based on arguments and keyword arguments"""
         allowed_args = ["id", "size", "x", "y"]
-        # If *args is not empty, assign values based on the order of allowed_args
+        # Assign values based on the order of allowed_args
         if args:
             for index, arg in enumerate(args):
                 setattr(self, allowed_args[index], arg)

@@ -1,5 +1,6 @@
 """Test Square"""
 import unittest
+from unittest import mock
 import sys
 import io
 
@@ -28,7 +29,7 @@ class TestRectangle(unittest.TestCase):
         rectangle = Square(20)
         rectangle.size = 99
         self.assertEqual(rectangle.size, 99)
-    
+
     def test_size_setter_failed(self):
         """test set size"""
         rectangle = Square(32)
@@ -78,7 +79,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(result, "[Square] (12) 2/1 - 6/6\n")
         # Reset stdout
         sys.stdout = self.original_stdout
-    
+
     def test_square_update(self):
         """Test square"""
         square = Square(1, 1, 1, 1)
@@ -87,7 +88,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(square.size, 3)
         self.assertEqual(square.x, 4)
         self.assertEqual(square.y, 5)
-    
+
     def test_to_dictionary(self):
         """test the method to_dictionary"""
         case1 = Square(3, 1, 4, 9)
@@ -100,6 +101,18 @@ class TestRectangle(unittest.TestCase):
         to_dict = case1.to_dictionary()
         self.assertEqual(to_dict, expected_output)
         self.assertIsInstance(to_dict, dict)
+
+    @mock.patch('builtins.open', new_callable=mock.mock_open)
+    def test_save_to_file_square(self, mock_open_file):
+        # Test save_to_file with a list of Square instances
+        case1 = Square(5, 2, 3, 1)
+        case2 = Square(8, 4, 6, 2)
+        Square.save_to_file([case1, case2])
+        mock_open_file.assert_called_once_with('Square.json', 'w')
+        mock_open_file().write.assert_called_once_with(
+            '[{"id": 1, "size": 5, "x": 2, "y": 3}, '
+            '{"id": 2, "size": 8, "x": 4, "y": 6}]'
+        )
 
 
 if __name__ == '__main__':

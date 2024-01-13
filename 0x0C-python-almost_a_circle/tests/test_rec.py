@@ -1,5 +1,6 @@
 """Test Rectangle"""
 import unittest
+from unittest import mock
 import sys
 import io
 
@@ -23,7 +24,7 @@ class TestRectangle(unittest.TestCase):
         rectangle = Rectangle(10, 20)
         rectangle.width = 30
         self.assertEqual(rectangle.width, 30)
-    
+
     def test_width_setter_failed(self):
         """test set width"""
         rectangle = Rectangle(10, 20)
@@ -55,7 +56,7 @@ class TestRectangle(unittest.TestCase):
         rectangle = Rectangle(10, 20)
         rectangle.x = 5
         self.assertEqual(rectangle.x, 5)
-    
+
     def test_x_setter_failed(self):
         """test set x"""
         rectangle = Rectangle(10, 20)
@@ -71,7 +72,7 @@ class TestRectangle(unittest.TestCase):
         rectangle = Rectangle(10, 20)
         rectangle.y = 7
         self.assertEqual(rectangle.y, 7)
-    
+
     def test_y_setter_failed(self):
         """test set y"""
         rectangle = Rectangle(10, 20)
@@ -81,7 +82,7 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError) as exc:
             rectangle.y = -1
             self.assertEqual(str(exc.exception), "y must be >= 0")
-    
+
     def test_calculate_area(self):
         """test calculate area"""
         case1 = Rectangle(3, 2)
@@ -127,7 +128,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(result, expected_output)
         # Reset stdout
         sys.stdout = self.original_stdout
-    
+
     def test_with_print_statement(self):
         """Test the print by implementing __str__"""
         # Capture and update stdout
@@ -196,6 +197,18 @@ class TestRectangle(unittest.TestCase):
         to_dict = case1.to_dictionary()
         self.assertEqual(to_dict, expected_output)
         self.assertIsInstance(to_dict, dict)
+
+    @mock.patch('builtins.open', new_callable=mock.mock_open)
+    def test_save_to_file_rectangle(self, mock_open_file):
+        case1 = Rectangle(1, 2, 3, 4, 5)
+        case2 = Rectangle(6, 7, 8, 9, 10)
+        Rectangle.save_to_file([case1, case2])
+        mock_open_file.assert_called_once_with('Rectangle.json', 'w')
+        mock_open_file().write.assert_called_once_with(
+            '[{"id": 5, "width": 1, "height": 2, "x": 3, "y": 4}, '
+            '{"id": 10, "width": 6, "height": 7, "x": 8, "y": 9}]'
+        )
+
 
 if __name__ == '__main__':
     unittest.main()

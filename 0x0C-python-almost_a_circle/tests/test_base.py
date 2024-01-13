@@ -1,5 +1,6 @@
 """Test Base class"""
 import unittest
+from unittest import mock
 
 from models.base import Base
 
@@ -27,6 +28,12 @@ class TestBaseClass(unittest.TestCase):
         self.assertEqual(result1, "{\"a\": \"a\", \"b\": \"b\"}")
         self.assertEqual(result2, "[]")
         self.assertEqual(result3, "[]")
+
+    @mock.patch('builtins.open', new_callable=mock.mock_open)
+    def test_save_to_file_empty_list(self, mock_open_file):
+        Base.save_to_file([])
+        mock_open_file.assert_called_once_with('Base.json', 'w')
+        mock_open_file().write.assert_called_once_with('[]')
 
 
 if __name__ == "__main__":
