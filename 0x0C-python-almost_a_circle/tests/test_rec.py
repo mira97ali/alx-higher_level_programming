@@ -1,5 +1,8 @@
 """Test Rectangle"""
 import unittest
+import sys
+import io
+
 from models.rectangle import Rectangle
 
 
@@ -83,13 +86,29 @@ class TestRectangle(unittest.TestCase):
         """test calculate area"""
         case1 = Rectangle(3, 2)
         self.assertEqual(case1.area(), 6)
-
         case2 = Rectangle(2, 10)
         self.assertEqual(case2.area(), 20)
-
         case3 = Rectangle(8, 7, 0, 0, 12)
         self.assertEqual(case3.area(), 56)
 
+    def test_display_without_x_and_y(self):
+        """Test display without X and Y"""
+        # Capture and update stdout
+        self.original_stdout = sys.stdout
+        sys.stdout = io.StringIO()
+        # Start testing
+        case1 = Rectangle(4, 6)
+        case1.display()
+        result = sys.stdout.getvalue()
+        expected_output = ("####\n"
+                           "####\n"
+                           "####\n"
+                           "####\n"
+                           "####\n"
+                           "####\n")
+        self.assertEqual(result, expected_output)
+        # Reset stdout
+        sys.stdout = self.original_stdout
 
 if __name__ == '__main__':
     unittest.main()
