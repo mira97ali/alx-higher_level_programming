@@ -1,0 +1,9 @@
+-- List all shows and all genres linked to each show from the hbtn_0d_tvshows database
+-- Then shows without a genre will display NULL in the genre column
+-- Then results are sorted by show title and genre name in ascending order
+-- Finally Utilize a LEFT JOIN to include all shows even if they do not have a genre linked
+SELECT tv_shows.title, tv_genres.name
+FROM tv_shows
+LEFT JOIN tv_show_genres ON tv_shows.id = tv_show_genres.show_id
+LEFT JOIN tv_genres ON tv_show_genres.genre_id = tv_genres.id
+ORDER BY tv_shows.title ASC, tv_genres.name ASC;
