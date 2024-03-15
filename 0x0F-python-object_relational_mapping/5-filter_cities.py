@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Filter Cities"""
-import MySQLdb
 import sys
+import MySQLdb
 
 
 if __name__ == "__main__":

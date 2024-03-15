@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """My Safe Filter States"""
-import MySQLdb
 import sys
+import MySQLdb
 
 
 if __name__ == "__main__":

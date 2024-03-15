@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """My Filter States"""
-import MySQLdb
 import sys
+import MySQLdb
 
 
 if __name__ == "__main__":
@@ -14,7 +14,8 @@ if __name__ == "__main__":
     )
     cursor = database.cursor()
     cursor.execute(
-        "SELECT * FROM states WHERE name LIKE BINARY '{}'".format(sys.argv[4])
+        "SELECT * FROM states WHERE name LIKE BINARY %s",
+        (sys.argv[4],)
     )
     for row in cursor.fetchall():
         print(row)
